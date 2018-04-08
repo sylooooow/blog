@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>闫子夜的个人博客</title>
+    <link rel="stylesheet" href="plugin/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="plugin/swiper/swiper-4.1.6.min.css">
+    <link rel="stylesheet" href="css/article_detail.css">
+</head>
+<body>
+<!--返回顶部-->
+<div id="toTop" class="glyphicon glyphicon-circle-arrow-up"></div>
+
+<!--隐藏导航菜单-->
+<div class="hide_nav_menu">
+    <div class="hide_nav_menu_box">
+        <a href="#">首页</a>
+        <a href="#">关于</a>
+        <a href="#">成长</a>
+        <a href="#">学习</a>
+        <a href="#">娱乐</a>
+        <a href="#">说说</a>
+        <a href="#">留言</a>
+    </div>
+</div>
+
+<!--隐藏搜索框-->
+<div class="hide_search">
+    <div class="hide_search_box">
+        <input type="text" id="hide_search_text" placeholder="search">
+        <button id="hide_search">搜索</button>
+    </div>
+</div>
+
+
+
+
+<!--头部导航开始-->
+<div class="header">
+    <div class="header_container">
+        <span id="hideMenu" class="glyphicon glyphicon-menu-hamburger"></span>
+        <div class="header_logo"></div>
+        <div class="header_nav_box">
+            <div class="header_nav">
+                <a href="index.html" style="color: #6CA743">首页</a>
+                <a href="#">文章</a>
+                <a href="#">成长</a>
+                <a href="#">说说</a>
+                <a href="#">留言</a>
+                <a href="#">关于</a>
+            </div>
+        </div>
+        <div class="header_search_box">
+            <div class="header_search">
+                <input type="text" id="search_text" placeholder="search">
+                <button id="search">搜索</button>
+            </div>
+        </div>
+        <!--隐藏搜索图标-->
+        <span id="hideSearch" class="glyphicon glyphicon-search"></span>
+    </div>
+</div>
+<!--头部导航结束-->
+
+<!--顶部文章路径-->
+<div class="article_route">
+    <div class="article_route_box">
+        <span>首页</span>
+        <span>/</span>
+        <span>文章</span>
+        <span>/</span>
+        <span class="article_title">这里是文章的标题</span>
+    </div>
+</div>
+<!--顶部文章路径结束-->
+
+<!--中间主体内容开始-->
+<div class="main">
+    <div class="main_left">
+        <!--文章内容开始-->
+        <div class="article_content_box">
+            <div class="article_content_title">
+                <h3>这里是文章标题</h3>
+            </div>
+            <div class="article_content_about">
+                <div>
+                    <span>
+                        作者:
+                        <span>哈哈哈</span>
+                    </span>
+                    <span>
+                        阅读:
+                        <span>665</span>
+                    </span>
+                    <span>
+                        评论:
+                        <span>32</span>
+                    </span>
+                    <span>
+                        发布时间:
+                        <span>2018-03-21</span>
+                    </span>
+                </div>
+            </div>
+            <div class="article_detail_box">
+                这里是文章的正文
+            </div>
+            <div class="article_paging">
+                <div class="article_prev">
+                    <span>上一篇:</span>
+                    <a href="#">上一篇文章的标题</a>
+                </div>
+                <div class="article_next">
+                    <span>下一篇:</span>
+                    <a href="#">下一篇文章的标题</a>
+                </div>
+            </div>
+        </div>
+        <!--文章内容结束-->
+
+        <!--文章评论开始-->
+        <div class="article_comment_box">
+            <div class="article_comment_count">
+                <div>
+                    <span>已有 </span>
+                    <span>2</span>
+                    <span> 条评论</span>
+                </div>
+            </div>
+            <div class="article_comment_detail_box">
+                <div class="article_comment_detail_left">
+                    <img src="img/logo0.png" alt="">
+                </div>
+                <div class="article_comment_detail_right">
+                    <div class="article_comment_name">
+                        <span>小王</span>
+                    </div>
+                    <div class="article_comment_text">看看怎么样</div>
+                    <div class="article_comment_date">
+                        <span>2018-01-30 15:22</span>
+                        <a href="#">回复</a>
+                    </div>
+                </div>
+            </div>
+            <div class="article_comment_detail_box">
+                <div class="article_comment_detail_left">
+                    <img src="img/logo0.png" alt="">
+                </div>
+                <div class="article_comment_detail_right">
+                    <div class="article_comment_name">
+                        <span>小李</span>
+                    </div>
+                    <div class="article_comment_text">感觉你够呛能做完啊</div>
+                    <div class="article_comment_date">
+                        <span>2018-01-30 15:22</span>
+                        <a href="#">回复</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--文章评论结束-->
+
+        <!--发表评论开始-->
+        <div class="article_comment_publish">
+            <div class="article_comment_publish_text">
+                <textarea placeholder="你的评论可以一针见血..."></textarea>
+            </div>
+            <div class="article_comment_send">
+                <button>提交评论</button>
+            </div>
+        </div>
+        <!--发表评论结束-->
+    </div>
+    <div class="main_right">
+        <!--关于作者开始-->
+        <div class="common_box">
+            <div class="common_title">
+                <span>关于</span>
+            </div>
+            <div class="about_container">
+                <div class="author_img">
+                    <img src="img/au.jpg" alt="">
+                </div>
+                <div class="author_intro">
+                    <a href="#">关于博主</a>
+                </div>
+                <div class="article_comment">
+                    <span>文章：<span class="articles">1199</span></span>
+                    <span>留言：<span class="comments">2587</span></span>
+                </div>
+            </div>
+        </div>
+        <!--关于作者结束-->
+        <!--最新发布开始-->
+        <div class="common_box">
+            <div class="common_title">
+                <span>最新发布</span>
+            </div>
+            <div class="common_content">
+                <div class="new_publish_text">
+                    <a href="#">排序算法之冒泡排序 - Java实现</a>
+                </div>
+                <div class="new_publish_text">
+                    <a href="#">排序算法之冒泡排序 - Java实现</a>
+                </div>
+                <div class="new_publish_text">
+                    <a href="#">排序算法之冒泡排序 - Java实现</a>
+                </div>
+                <div class="new_publish_text">
+                    <a href="#">排序算法之冒泡排序 - Java实现</a>
+                </div>
+                <div class="new_publish_text">
+                    <a href="#">排序算法之冒泡排序 - Java实现</a>
+                </div>
+            </div>
+        </div>
+        <!--最新发布结束-->
+        <!--最新留言开始-->
+        <div class="common_box">
+            <div class="common_title">
+                <span>最新留言</span>
+            </div>
+            <div class="common_content">
+                <div class="new_comment_text">
+                    <a href="#">《排序算法之冒泡排序 - Java实现》</a>
+                    <div class="user_comment">
+                        <span class="user">逆风的蔷薇</span>
+                        说:
+                        <span class="comment_text">
+                            不错不错不错不错不错不错不错不错不错
+                        </span>
+                    </div>
+                    <div class="comment_time_box">
+                        <span class="comment_time">2018-03-012 15:46</span>
+                        <span>评论(<span class="comment_count">8</span>)</span>
+                    </div>
+                </div>
+                <div class="new_comment_text">
+                    <a href="#">《PHP应用开发》</a>
+                    <div class="user_comment">
+                        <span class="user">冬天里的袖子</span>
+                        说:
+                        <span class="comment_text">
+                            哈哈哈哈哈哈哈
+                        </span>
+                    </div>
+                    <div class="comment_time_box">
+                        <span class="comment_time">2018-03-012 16:12</span>
+                        <span>评论(<span class="comment_count">12</span>)</span>
+                    </div>
+                </div>
+                <div class="new_comment_text">
+                    <a href="#">《JavaScript高级程序设计》</a>
+                    <div class="user_comment">
+                        <span class="user">爱丽楠真是太好了</span>
+                        说:
+                        <span class="comment_text">
+                            呵呵呵额呵呵呵呵呵
+                        </span>
+                    </div>
+                    <div class="comment_time_box">
+                        <span class="comment_time">2018-03-012 18:55</span>
+                        <span>评论(<span class="comment_count">8</span>)</span>
+                    </div>
+                </div>
+                <div class="new_comment_text">
+                    <a href="#">《计算机原理》</a>
+                    <div class="user_comment">
+                        <span class="user">midnight</span>
+                        说:
+                        <span class="comment_text">
+                            不太行啊不太行啊不太行啊不太行啊不太行啊
+                        </span>
+                    </div>
+                    <div class="comment_time_box">
+                        <span class="comment_time">2018-03-013 10:06</span>
+                        <span>评论(<span class="comment_count">18</span>)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--最新留言结束-->
+    </div>
+</div>
+
+<!--底部页脚开始-->
+<div class="footer">
+    <div class="footer_box">
+        <span class="contact">
+            <a href="#">邮件</a>
+            <a href="#">微博</a>
+            <a href="#">GitHub</a>
+        </span>
+        <span>Copyright © 2018</span>
+    </div>
+</div>
+<!--底部页脚结束-->
+
+<script src="plugin/jquery-3.2.1.min.js"></script>
+<script src="js/article_detail.js"></script>
+
+
+</body>
+</html>

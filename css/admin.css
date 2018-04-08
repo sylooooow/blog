@@ -1,0 +1,376 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html,body {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.top {
+    width: 100%;
+    height: 60px;
+    min-height: 60px;
+    background-color: #1F9DFB;
+    position: fixed;
+    top:0;
+    left:0;
+    display: flex;
+}
+.top_left, .top_right {
+    height: 100%;
+}
+.top_left {
+    width: 200px;
+    min-width: 200px;
+    border-right: 1px solid #5DB6DE;
+}
+.top_right {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.hide-nav {
+    padding: 0 10px;
+    display: none;
+}
+.hide-nav > i {
+    color: #ffffff;
+    font-size: 24px;
+}
+.hide-nav > i:hover {
+    cursor: pointer;
+    color: #F2F2F2;
+}
+.main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+.main_left {
+    width: 200px;
+    min-width: 200px;
+}
+.main_right {
+    width: 100%;
+}
+
+.regular {
+    width: 100%;
+    height: 60px;
+    min-height: 60px;
+}
+.left_content, .right_content {
+    width: 100%;
+    height: 100%;
+}
+.left_content {
+    display: flex;
+    flex-direction: column;
+    background-color: #EDF0F5;
+}
+.right_content {
+    overflow: scroll;
+    overflow-x: hidden;
+    /* background-color: red; */
+}
+.long-content {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 10px;
+}
+.long-content_operation {
+    width: 100%;
+    height: 60px;
+    background-color: #EEEEEE;
+    display: flex;
+    align-items: center;
+}
+.long-content_operation input {
+    height: 36px;
+    width: 175px;
+    border: none;
+    border: 1px solid #BFCBD8;
+    border-radius: 5px;
+    outline: none;
+    padding-left: 5px;
+    margin-left: 15px;
+}
+.long_search_btn, .long_add_btn {
+    height: 36px;
+    width: 60px;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: #1F9DFB;
+    border-radius: 5px;
+    margin-left: 15px;
+}
+.long_search_btn:hover, .long_add_btn:hover {
+    background-color: #4CB1FC;
+}
+.long-content_table {
+    width: 100%;
+    margin-top: 20px;
+    border: 1px solid #F8F8F8;
+    /* background-color: red; */
+    overflow: scroll;
+    /* overflow-x:hidden; */
+}
+#articleTable {
+    width: 100%;
+    min-width: 1000px;
+    word-break:break-all;
+    table-layout:fixed; 
+    border: none;
+}
+.tr {
+    width: 100%;
+    margin-bottom: 5px;
+}
+.tr:hover {
+    background-color: #EDF7FF;
+}
+.tr > td:nth-child(1) {
+    padding-left: 5px;
+}
+.td {
+    padding: 10px 0;
+    color: #3C4855;
+    font-size: 0.9em;
+    text-align: left;
+    border-bottom: 1px solid #DFE6EC;
+    /* word-break:keep-all; */
+    /* white-space: nowrap; */
+    /* text-overflow: ellipsis;
+    overflow: hidden;  */
+}
+.td > div {
+    height: 100px;
+    width: 100%;
+    /* display: flex;
+    align-items: center; */
+    /* white-space: nowrap; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.editBtn,.deleteBtn {
+    width: 44px;
+    height: 28px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-size: 10px;
+}
+.editBtn {
+    border: 1px solid #BFCBD8;
+}
+.deleteBtn {
+    background-color: #FF444B;
+    color: white;
+    margin-left: 10px;
+}
+.first {
+    height: 45px;
+    background-color: #EDF2F7;
+}
+.th > input {
+    margin-right: 3px;
+}
+.th:nth-child(1) {
+    width: 6%;
+    padding-left: 5px;
+}
+.th:nth-child(2) {
+    width: 9%;
+}
+.th:nth-child(3) {
+    width: 10%;
+}
+.th:nth-child(4) {
+    width: 10%;
+}
+.th:nth-child(5) {
+    width: 20%;
+}
+.th:nth-child(6) {
+    width: 10%;
+}
+.th:nth-child(7) {
+    width: 5%;
+}
+.th:nth-child(8) {
+    width: 5%;
+}
+.th:nth-child(9) {
+    width: 5%;
+}
+.th:nth-child(10) {
+    width: 10%;
+}
+.th:nth-child(11) {
+    width: 10%;
+}
+
+.long-content_page {
+    width: 100%;
+    height: 56px;
+    background-color: #F2F2F2;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+#all_delete {
+    width: 88px;
+    height: 36px;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    color: white;
+    background-color: red;
+    cursor: pointer;
+}
+.liBgc {
+    background-color: #EEEEEE;
+}
+/*隐藏盒子*/
+#hidden {
+    position: absolute;
+    z-index: 9;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .3);
+    display: none;
+}
+
+.hidden_box {
+    width: 567px;
+    height: 567px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -283px;
+    margin-top: -283px;
+}
+
+.hidden_box_top {
+    width: 90%;
+    height: 60px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.span1 {
+    position: absolute;
+    left: 0;
+}
+
+.span2 {
+    position: absolute;
+    right: 0;
+}
+
+.span2 button {
+    width: 105px;
+    height: 35px;
+    background-color: #1E8AFF;
+    font-size: 14px;
+    color: white;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+}
+
+.hidden_box_content {
+    width: 85%;
+    min-width: 447px;
+    height: 380px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.hidden_box_content_left {
+    width: 17%;
+    text-align: right;
+}
+
+.hidden_box_content_left span {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 45px;
+}
+
+.hidden_box_content_right {
+    width: 80%;
+    text-align: left;
+}
+
+.hidden_box_content_right span {
+    display: block;
+    margin-bottom: 35px;
+}
+
+.hidden_box_content_right span input {
+    width: 330px;
+    height: 30px;
+    border: 1px solid #C1C1C1;
+    border-radius: 3px;
+}
+
+.hidden_box_content_right span input::-webkit-input-placeholder {
+    font-size: 14px;
+}
+
+.span_btn button {
+    width: 85px;
+    height: 35px;
+    color: #555365;
+    margin-right: 15px;
+    outline: none;
+}
+.choose {
+    outline: none;
+}
+
+.submit button {
+    width: 262px;
+    height: 42px;
+    background-color: #1E8AFF;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    border: none;
+}
+
+
+@media only screen and (min-width: 400px) and (max-width: 1250px) {
+    .main {
+        flex-direction: column;
+    }
+    .main_right > .regular {
+        display: none;
+    }
+    .hide-nav {
+        display: block;
+    }
+    .main_left {
+        width: 100%;
+    }
+    .left_content {
+        height: 200px;
+        display: none;
+    }
+}
+
+
