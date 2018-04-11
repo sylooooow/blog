@@ -1,5 +1,5 @@
 {
-  "name": "myBlog",
+  "name": "blog",
   "version": "0.0.1",
   "dependencies": {
     "cookie": "^0.3.1",
