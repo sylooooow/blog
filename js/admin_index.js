@@ -9,10 +9,14 @@ $(function () {
     let pageTarget = null;
     //保存搜索结果的数量
     let searchNum = null;
-    //标记进行网络请求时是搜索还是正常加载,为了在点击上一页或这一页时区分数据类型
-    let isSearch = false;
     //保存搜索的文章名
     let title = "";
+    //标记进行网络请求时是搜索还是正常加载,为了在点击上一页或这一页时区分数据类型
+    let isSearch = false;
+    //定义一个数组保存每次获取10篇文章的id
+    let idArr = [];
+ 
+
 
     //请求并显示数据,每页显示10条数据
     showData(searchNum, pageNum);
@@ -22,6 +26,12 @@ $(function () {
         $.ajax({
             url: "/getArticle?pageNum=" + pageNum,
             success: (result) => {
+                //清空一下id数组,保证每次翻页都是当前的10篇文章id
+                idArr = [];
+                //遍历返回的数据,把文章id存入数组,用于批量删除
+                $.each(result, function(index,item) {
+                    idArr.push(item["_id"]);
+                });
                 //创建列表表头
                 createFirstRow();
                 //创建列表内容
@@ -33,7 +43,7 @@ $(function () {
             }
         });
     }
-    
+
 
 
     //创建第一行标题
@@ -41,8 +51,8 @@ $(function () {
         $("#articleTable").append($(
             "<tr class='first'>" +
             "<th class='th'>" +
-            "<input type='checkbox'>" +
-            "<lable>全选</lable>" +
+            "<input id='chooseAll' type='checkbox'>" +
+            "<label for='chooseAll'>全选</label>" +
             "</th>" +
             "<th class='th'>标题</th>" +
             "<th class='th'>封面</th>" +
@@ -54,7 +64,10 @@ $(function () {
             "<th class='th'>作者</th>" +
             "<th class='th'>发布时间</th>" +
             "<th class='th'>操作</th>" +
-            "</tr>"));
+            "</tr>"
+        ));
+        //给全选按钮添加点击事件
+        $("#chooseAll").click(chooseAllCheckBox);
     }
 
     //创建文章列表
@@ -64,7 +77,7 @@ $(function () {
             $articleTable.append($(
                 "<tr class='tr'>" +
                 "<td class='td'>" +
-                "<input type='checkbox'>" +
+                "<input type='checkbox' class='chooseDelete'>" +
                 "</td>" +
 
                 "<td class='td'>" +
@@ -137,11 +150,11 @@ $(function () {
             }
         } else {
             $.ajax({
-                url:"/getCount",
-                success:(result) => {
+                url: "/getCount",
+                success: (result) => {
                     dataBaseNum = result.length;
                     //判断数据数量是否大于10,是则创建分页,否则不创建
-                    if (dataBaseNum > 10) {        
+                    if (dataBaseNum > 10) {
                         //根据数据的数量创建底部分页 参数:数据数目,当前页数
                         createPages(dataBaseNum, pageNum);
                     }
@@ -174,7 +187,7 @@ $(function () {
 
 
         //根据页数循环创建分页点击按钮
-        for(let i = 1; i <= totalPage; i++) {
+        for (let i = 1; i <= totalPage; i++) {
             ul.append(
                 $(
                     `<li class="nowPage"><span>${i}</span></li>`
@@ -199,15 +212,15 @@ $(function () {
 
         //给分页切换时按钮设置背景色
         //先清空所有按钮的背景色
-        $(".nowPage").find("span").css("background-color",""); 
-        $(".nowPage").eq(pageNum - 1).find("span").css("background-color","#EEEEEE");
+        $(".nowPage").find("span").css("background-color", "");
+        $(".nowPage").eq(pageNum - 1).find("span").css("background-color", "#EEEEEE");
     }
 
 
 
     //上一页点击函数
     function toPreviousPage(ev) {
-        pageNum --;
+        pageNum--;
         //判断如果当前页数是否小于第一页,则点击上一页总是等于第一页
         if (pageNum < 1) {
             pageNum = 1;
@@ -218,7 +231,7 @@ $(function () {
                 getSearchData(searchNum, pageNum, title);
             } else {
                 //请求并显示数据,每页显示10条数据
-                showData(searchNum,pageNum);
+                showData(searchNum, pageNum);
             }
         }
     }
@@ -226,8 +239,8 @@ $(function () {
 
 
     //下一页点击函数
-    function toNextPage(){
-        pageNum ++;
+    function toNextPage() {
+        pageNum++;
         //判断如果当前页数是否大于总页数,是则点击下一页总是等于最大页数
         if (pageNum > totalPage) {
             pageNum = totalPage;
@@ -238,7 +251,7 @@ $(function () {
                 getSearchData(searchNum, pageNum, title);
             } else {
                 //请求并显示数据,每页显示10条数据
-                showData(searchNum,pageNum);
+                showData(searchNum, pageNum);
             }
         }
     };
@@ -255,7 +268,7 @@ $(function () {
             getSearchData(searchNum, pageNum, title);
         } else {
             //请求并显示数据,每页显示10条数据
-            showData(searchNum,pageNum);
+            showData(searchNum, pageNum);
         }
     }
 
@@ -384,7 +397,7 @@ $(function () {
     $(".long_search_btn").click(() => {
         //如果输入框为空时点击查询,无效果
         title = $("#searchText").val().trim();
-        if(title != "") {
+        if (title != "") {
             //改变isSearch为true,表示状态为搜索
             isSearch = true;
             //重新设置pageNum为1,使搜索结果显示为第一页
@@ -394,7 +407,7 @@ $(function () {
             $.ajax({
                 url: "/searchCount?title=" + title,
                 type: "get",
-                success:(result) => {
+                success: (result) => {
                     searchNum = result.length;
                     //第二次网络请求,获取10条数据
                     getSearchData(searchNum, pageNum, title);
@@ -410,6 +423,11 @@ $(function () {
             type: "get",
             success: (result) => {
                 if (result) {
+                    //更新文章id数组
+                    idArr = [];
+                    $.each(result, function(index,item) {
+                        idArr.push(item["_id"]);
+                    });
                     //如果有返回结果,则清空文章列表重新创建,显示搜索结果
                     $("#articleTable").html("");
                     createFirstRow();
@@ -422,6 +440,63 @@ $(function () {
 
 
 
+    //全选
+    function chooseAllCheckBox() {
+        if (this.checked == true) {
+            $(".chooseDelete").each(function (index, element) {
+                element.checked = true;
+            });
+        } else {
+            $(".chooseDelete").each(function (index, element) {
+                element.checked = false;
+            });
+        }
+    }
+
+
+    //批量删除按钮点击
+    $("#all_delete").click(function () {
+        let msg = "确定要删除所选文章吗?";
+        if (confirm(msg)) {
+            //标记是否已经批量删除
+            let allDeleted = false;
+            //遍历所有选择按钮,看是否有选中
+            $(".chooseDelete").each(function (index, element) {
+                //如果被选中,获取对应的文章id进行删除
+                if (element.checked) {
+                    let articleId = idArr[index];
+                    deleteAllChoosed(articleId);
+                    allDeleted = true;
+                }
+            });
+            // 判断批量删除的状态true表示已经删除完
+            if (allDeleted) {
+                alert("删除成功!");
+                location.reload(true);
+            } else {
+                alert("请选择要删除的数据!");
+            }
+        }
+    });
+
+
+
+    //批量删除执行函数
+    function deleteAllChoosed(id) {
+        //根据文章名进行网络请求
+        $.ajax({
+            url: "/deleteById?id=" + id,
+            type: "get",
+            async: false,
+            success: (result) => {
+                if (result == "1") {
+                    console.log("删除成功!");
+                }
+            }
+        });
+    }
+
+
 
     //当页面尺寸发生改变的时候，设置左侧导航的显示与隐藏
     $(window).resize(function () {
@@ -432,6 +507,7 @@ $(function () {
             $(".left_content").hide();
         }
     });
+
     //点击显示隐藏或隐藏的左侧导航
     $(".hide-nav").click(() => {
         $(".left_content").slideToggle();

@@ -324,6 +324,21 @@ app.get("/delete", (req, res) => {
 });
 
 
+//批量删除
+app.get("/deleteById", (req, res) => {
+    articleModel.remove({
+        _id: req.query.id
+    }, (err) => {
+        if (err) {
+            console.error(err);
+        } else {
+            console.log("删除文章成功!");
+            res.send("1");
+        }
+    });
+});
+
+
 
 //修改文章
 app.post("/modify", (req, res) => {
