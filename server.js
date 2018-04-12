@@ -244,9 +244,23 @@ app.get("/admin_login", (req, res) => {
     });
 });
 
+//获取数据库里所有数据,前端以此来计算数据的数量
+app.get("/getCount", (req, res) => {
+    articleModel.find({}, (err, doc) => {
+        res.send(doc);
+    });
+});
+
+
+
 //主页请求文章列表
 app.get("/getArticle", (req, res) => {
-    articleModel.find({}, (err, doc) => {
+    //获取前台传来的当前是第几页
+    let pageNum = (req.query.pageNum - 1) * 10;
+    articleModel.find({}, null, {
+        skip: pageNum,
+        limit: 10
+    }, (err, doc) => {
         if (err) {
             console.error(err);
         } else {
@@ -297,12 +311,14 @@ app.post("/add", (req, res) => {
 
 //删除文章
 app.get("/delete", (req, res) => {
-    articleModel.remove({title:req.query.title}, (err) =>{
+    articleModel.remove({
+        title: req.query.title
+    }, (err) => {
         if (err) {
             console.error(err);
         } else {
-           console.log("删除文章成功!");
-           res.send("1");
+            console.log("删除文章成功!");
+            res.send("1");
         }
     });
 });
@@ -381,9 +397,16 @@ app.post("/modify", (req, res) => {
 
 //查询文章
 app.get("/search", (req, res) => {
-    let reg = new RegExp(req.query.title,'i');
+    //获取前台传来的当前是第几页,每次返回10条数据
+    let pageNum = (req.query.pageNum - 1) * 10;
+    let reg = new RegExp(req.query.title, 'i');
     articleModel.find({
-        title: {$regex : reg}
+        title: {
+            $regex: reg
+        }
+    }, null, {
+        skip: pageNum,
+        limit: 10
     }, (err, doc) => {
         if (err) {
             console.error(err);
@@ -393,6 +416,13 @@ app.get("/search", (req, res) => {
     });
 });
 
+//查询数量
+app.get("/searchCount", (req, res) => {
+    let reg = new RegExp(req.query.title, 'i');
+    articleModel.find({title:{$regex: reg}}, (err, doc) => {
+        res.send(doc);
+    });
+});
 
 
 //加载关联的css和js文件
